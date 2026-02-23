@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>方案B：奖状证书风格（推荐）</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .popup {
+            width: 340px;
+            background: white;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: popIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            /* 证书风格的金边装饰 */
+            border: 3px solid transparent;
+            background-clip: padding-box;
+        }
+
+        .popup::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(135deg, #FFD700, #FFA500, #FFD700);
+            border-radius: 20px;
+            z-index: -1;
+        }
+
+        @keyframes popIn {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* 红色弧形头部 */
+        .header-arc {
+            position: relative;
+            height: 160px;
+            background: linear-gradient(135deg, #ED3142 0%, #FF6B81 100%);
+            border-radius: 20px 20px 0 0;
+            overflow: hidden;
+        }
+
+        /* 装饰波浪 */
+        .header-arc::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: white;
+            border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+        }
+
+        /* 粒子效果 */
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .particle:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { top: 40%; left: 25%; animation-delay: 0.5s; }
+        .particle:nth-child(3) { top: 30%; right: 20%; animation-delay: 1s; }
+        .particle:nth-child(4) { top: 50%; right: 10%; animation-delay: 1.5s; }
+        .particle:nth-child(5) { top: 60%; left: 30%; animation-delay: 2s; }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+                opacity: 0;
+            }
+            50% {
+                transform: translateY(-20px) scale(1.5);
+                opacity: 1;
+            }
+        }
+
+        /* 大红花图标 */
+        .flower-badge {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .flower-icon {
+            font-size: 72px;
+            display: block;
+            animation: rotate 4s linear infinite;
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
+        }
+
+        @keyframes rotate {
+            0%, 100% {
+                transform: rotate(-5deg) scale(1);
+            }
+            50% {
+                transform: rotate(5deg) scale(1.05);
+            }
+        }
+
+        .header-title {
+            margin-top: 8px;
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 内容区域 */
+        .content {
+            padding: 24px 28px 28px;
+        }
+
+        .congrats {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            color: #ED3142;
+            margin-bottom: 16px;
+        }
+
+        .description {
+            text-align: center;
+            color: #333;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .activity-name {
+            color: #ED3142;
+            font-weight: 600;
+        }
+
+        /* 微信状态预览 */
+        .status-preview {
+            background: linear-gradient(135deg, #FFF5F5 0%, #FFFAF5 100%);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #FFE0E0;
+        }
+
+        .preview-label {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 10px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .preview-label::before,
+        .preview-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #ddd, transparent);
+        }
+
+        .preview-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .preview-flower {
+            font-size: 28px;
+        }
+
+        .preview-text {
+            font-size: 15px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        /* CTA按钮 */
+        .cta-button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #ED3142 0%, #FF6B81 100%);
+            color: white;
+            border: none;
+            border-radius: 28px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 16px rgba(237, 49, 66, 0.3);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .cta-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(237, 49, 66, 0.4);
+        }
+
+        .cta-button:active {
+            transform: translateY(0);
+        }
+
+        .cta-subtitle {
+            text-align: center;
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        /* 统计信息 */
+        .stats {
+            text-align: center;
+            font-size: 13px;
+            color: #999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .stats-icon {
+            font-size: 16px;
+        }
+
+        /* 设计标注 */
+        .design-notes {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 12px;
+            max-width: 300px;
+            line-height: 1.5;
+        }
+
+        .design-notes h4 {
+            margin-bottom: 8px;
+            color: #FFD700;
+        }
+
+        .design-notes ul {
+            list-style: none;
+        }
+
+        .design-notes li {
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="popup">
+        <!-- 红色弧形头部 -->
+        <div class="header-arc">
+            <!-- 粒子装饰 -->
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            
+            <!-- 大红花徽章 -->
+            <div class="flower-badge">
+                <span class="flower-icon">🌺</span>
+                <div class="header-title">恭喜获得小红花</div>
+            </div>
+        </div>
+
+        <!-- 内容区域 -->
+        <div class="content">
+            <div class="description">
+                感谢你参与<br>
+                <span class="activity-name">「献血点亮生命之光」</span>
+            </div>
+
+            <!-- 微信状态预览 -->
+            <div class="status-preview">
+                <div class="preview-label">朋友将看到</div>
+                <div class="preview-content">
+                    <span class="preview-flower">🌺</span>
+                    <span class="preview-text">献血点亮生命之光</span>
+                </div>
+            </div>
+
+            <!-- CTA按钮 -->
+            <button class="cta-button">
+                <span style="position: relative; z-index: 1;">🌸 戴上小红花 🌸</span>
+            </button>
+            <p class="cta-subtitle">设为我的微信状态</p>
+            
+            <!-- 统计 -->
+            <p class="stats">
+                <span class="stats-icon">👥</span>
+                <span>已有 <strong>23.8万</strong> 人戴上</span>
+            </p>
+        </div>
+    </div>
+
+    <!-- 设计标注 -->
+    <div class="design-notes">
+        <h4>方案B：设计要点（推荐）</h4>
+        <ul>
+            <li>✓ 金色边框装饰（3px，渐变）</li>
+            <li>✓ 红色弧形头部（高度160px）</li>
+            <li>✓ 大尺寸红花icon（72px）+ 旋转动效</li>
+            <li>✓ 粒子飘散效果</li>
+            <li>✓ 波浪分割线</li>
+            <li>✓ 强化"证书/奖状"隐喻</li>
+            <li>✓ 按钮hover水波纹效果</li>
+        </ul>
+    </div>
+</body>
+</html>

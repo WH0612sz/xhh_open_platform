@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>支持与公告 · 腾讯公益开放平台</title>
+  <link rel="stylesheet" href="./open_platform.css" />
+</head>
+<body data-page="support">
+  <header>
+    <div class="container header-inner">
+      <div class="logo">
+        <div class="logo-badge">益</div>
+        支持与公告
+      </div>
+      <nav class="nav">
+        <a data-page="home" href="./index.html">首页</a>
+        <a data-page="capabilities" href="./capabilities.html">产品能力</a>
+        <a data-page="docs" href="./docs.html">文档中心</a>
+        <a data-page="console" href="./console.html">控制台</a>
+        <a data-page="api" href="./api.html">API 参考</a>
+        <a data-page="support" href="./support.html">支持与公告</a>
+      </nav>
+      <button class="btn">提交工单</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="section">
+      <h2>常见问题（FAQ）</h2>
+      <div class="faq-item">
+        <button>如何获取 AppID 和 Secret？</button>
+        <div class="answer">进入控制台创建应用后即可查看。</div>
+      </div>
+      <div class="faq-item">
+        <button>签名校验失败怎么排查？</button>
+        <div class="answer">检查时间戳、nonce 与 body 拼接顺序是否一致。</div>
+      </div>
+      <div class="faq-item">
+        <button>回调收不到通知怎么办？</button>
+        <div class="answer">检查回调地址可访问性与 HTTPS 证书是否有效。</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>公告与变更</h2>
+      <div class="card">
+        <ul class="list">
+          <li>2026-02-20：小红花能力上线活动发放接口</li>
+          <li>2026-02-18：支付接口维护公告</li>
+          <li>2026-02-10：签名规则新增 nonce 校验</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>联系我们</h2>
+      <div class="card">
+        <p class="muted">技术支持：support@gongyi.qq.com</p>
+        <p class="muted">服务时间：周一至周五 09:00-18:00</p>
+      </div>
+    </section>
+
+    <footer>
+      如需更深度支持，可提交工单并关联应用与错误请求 ID。
+    </footer>
+  </main>
+  <script src="./open_platform.js"></script>
+</body>
+</html>

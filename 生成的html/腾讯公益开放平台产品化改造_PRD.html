@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>腾讯公益开放平台产品化改造 PRD</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --card: #121a2f;
+      --muted: #7c8db5;
+      --text: #e8eefc;
+      --brand: #5b8cff;
+      --brand-2: #23d5ab;
+      --border: #1f2a44;
+      --warning: #ffb020;
+      --shadow: 0 12px 30px rgba(5, 12, 25, 0.35);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: radial-gradient(1200px 600px at 80% -20%, rgba(91, 140, 255, 0.25), transparent),
+                  radial-gradient(900px 500px at 10% 10%, rgba(35, 213, 171, 0.18), transparent),
+                  var(--bg);
+      color: var(--text);
+    }
+    a { color: var(--brand); text-decoration: none; }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+      background: rgba(11, 16, 32, 0.8);
+      border-bottom: 1px solid var(--border);
+    }
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      align-items: center;
+      padding: 32px 0 16px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(91, 140, 255, 0.15);
+      border: 1px solid rgba(91, 140, 255, 0.4);
+      color: #cfe0ff;
+      font-size: 12px;
+    }
+    h1 {
+      font-size: 32px;
+      margin: 12px 0 10px;
+      line-height: 1.2;
+    }
+    .subtitle { color: var(--muted); line-height: 1.6; }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .grid {
+      display: grid;
+      gap: 20px;
+    }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+    .card h3 {
+      margin: 6px 0 10px;
+      font-size: 18px;
+    }
+    .muted { color: var(--muted); }
+    .content {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+    .toc {
+      position: sticky;
+      top: 96px;
+      align-self: start;
+      background: rgba(18, 26, 47, 0.6);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+    }
+    .toc h4 { margin: 0 0 10px; font-size: 14px; color: #cfe0ff; }
+    .toc a {
+      display: block;
+      padding: 6px 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .toc a:hover { color: var(--text); }
+    section {
+      padding: 18px 0 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    section:last-child { border-bottom: none; }
+    section h2 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+    .list {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--text);
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: 10px;
+      background: rgba(35, 213, 171, 0.12);
+      border: 1px solid rgba(35, 213, 171, 0.35);
+      color: #b7f7df;
+      font-size: 12px;
+    }
+    .highlight {
+      border-left: 3px solid var(--brand);
+      padding: 10px 14px;
+      background: rgba(91, 140, 255, 0.08);
+      color: #d9e5ff;
+      margin-top: 10px;
+      border-radius: 10px;
+    }
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 13px;
+    }
+    .table th, .table td {
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      text-align: left;
+    }
+    .table th {
+      background: rgba(91, 140, 255, 0.1);
+      color: #cfe0ff;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+      background: rgba(255, 176, 32, 0.14);
+      color: #ffd59a;
+      border: 1px solid rgba(255, 176, 32, 0.4);
+    }
+    .footer {
+      padding: 30px 0 60px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    @media (max-width: 1100px) {
+      .content { grid-template-columns: 1fr; }
+      .toc { position: relative; top: 0; }
+      .hero { grid-template-columns: 1fr; }
+      .grid-3, .grid-2 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between;">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div class="badge">PRD · 交付设计稿版</div>
+        <strong>腾讯公益开放平台产品化改造</strong>
+      </div>
+      <div class="pill">P0 范围已含控制台</div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="hero">
+      <div>
+        <span class="badge">V1.0 · 2026-02-22</span>
+        <h1>开放平台产品结构升级，面向“合作方场景接入”的全链路自助化</h1>
+        <p class="subtitle">本 PRD 用于指导设计师输出完整框架与页面交互，覆盖门户、产品能力、文档中心、支持中心与控制台（P0 必做）。</p>
+        <div class="meta">
+          <span>作者：AI（与产品共创）</span>
+          <span>状态：需求评审中</span>
+          <span>面向对象：交互/视觉/研发/运营/测试</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>产品目标</h3>
+        <ul class="list">
+          <li>30 分钟内理解能力与接入路径</li>
+          <li>1 天内跑通最小接入闭环</li>
+          <li>支持规模化运营与自助服务</li>
+        </ul>
+        <div class="highlight">核心策略：按场景组织能力 + Step-by-Step 接入 + 控制台自助化</div>
+      </div>
+    </div>
+
+    <div class="grid grid-3">
+      <div class="card">
+        <h3>用户角色</h3>
+        <p class="muted">合作方产品经理、合作方研发、平台运营/审核人员</p>
+      </div>
+      <div class="card">
+        <h3>典型场景</h3>
+        <p class="muted">捐赠接入、小红花、数据/账单、机构授权</p>
+      </div>
+      <div class="card">
+        <h3>成功指标</h3>
+        <p class="muted">新手转化、接入成功率、接入效率、支持成本下降</p>
+      </div>
+    </div>
+
+    <div class="content">
+      <nav class="toc">
+        <h4>目录导航</h4>
+        <a href="#scope">范围与阶段</a>
+        <a href="#ia">信息架构与导航</a>
+        <a href="#journey">关键用户旅程</a>
+        <a href="#pages">页面级 PRD</a>
+        <a href="#console">控制台（P0）</a>
+        <a href="#tools">开发者工具</a>
+        <a href="#design">设计规范</a>
+        <a href="#delivery">交付物</a>
+      </nav>
+
+      <main>
+        <section id="scope">
+          <h2>范围与阶段</h2>
+          <div class="grid grid-2">
+            <div class="card">
+              <h3>P0（MVP）</h3>
+              <ul class="list">
+                <li>门户（首页）</li>
+                <li>产品能力中心</li>
+                <li>文档中心（新手/基础/API/日志）</li>
+                <li>支持中心（FAQ/公告）</li>
+                <li><strong>控制台基础（应用/密钥/权限/回调）</strong></li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>P1/P2（增强）</h3>
+              <ul class="list">
+                <li>P1：开发者工具（API Explorer/签名工具/Postman）</li>
+                <li>P2：沙箱 + 数据看板</li>
+              </ul>
+              <span class="tag">控制台已纳入 P0</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="ia">
+          <h2>信息架构与导航</h2>
+          <div class="card">
+            <p class="muted">一级导航建议：首页、产品能力、文档中心、控制台、开发者工具、支持与公告。</p>
+            <p class="muted">全站统一：Header/ Footer、左侧目录树、全站搜索（API/文档/FAQ/公告）。</p>
+          </div>
+        </section>
+
+        <section id="journey">
+          <h2>关键用户旅程（新手接入）</h2>
+          <ol class="list">
+            <li>首页选择场景 → 进入能力页</li>
+            <li>快速开始 → 注册/创建应用 → 获取凭证</li>
+            <li>阅读开发基础 → 调用示例 API</li>
+            <li>配置回调并验证 → 进入具体能力</li>
+          </ol>
+          <div class="highlight">设计稿需覆盖每一步入口、提示文案、失败态与下一步指引。</div>
+        </section>
+
+        <section id="pages">
+          <h2>页面级 PRD（设计输出核心）</h2>
+          <div class="grid grid-2">
+            <div class="card">
+              <h3>首页</h3>
+              <ul class="list">
+                <li>Hero 价值主张 + 快速开始 CTA</li>
+                <li>场景卡片（捐赠/小红花/数据/机构）</li>
+                <li>3 步接入指引、公告、精选文档</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>产品能力</h3>
+              <ul class="list">
+                <li>左侧目录树 + 右侧概览内容</li>
+                <li>能力简介、子能力卡、前置条件</li>
+                <li>接入指南 / API / SDK 入口</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>文档中心</h3>
+              <ul class="list">
+                <li>目录树、正文、前后页、反馈组件</li>
+                <li>新手/接入/开发基础/API/SDK/日志</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>API 参考</h3>
+              <ul class="list">
+                <li>接口摘要、请求信息、参数表</li>
+                <li>示例代码、错误码、关联文档</li>
+                <li>在线调试按钮（P1 置灰提示）</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="console">
+          <h2>控制台（P0 必做）</h2>
+          <div class="card">
+            <p class="muted">信息架构：Dashboard / 应用管理 / 权限申请 / 密钥与安全 / 回调配置与日志。</p>
+            <table class="table">
+              <thead>
+                <tr><th>页面</th><th>关键内容</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>应用列表/创建</td><td>应用名、AppID、状态、能力、创建流程</td></tr>
+                <tr><td>密钥与安全</td><td>Secret 显示/复制、IP 白名单、回调域名</td></tr>
+                <tr><td>回调配置与日志</td><td>回调 URL、事件类型、日志与重试</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="tools">
+          <h2>开发者工具（P1/P2）</h2>
+          <div class="grid grid-2">
+            <div class="card">
+              <h3>API Explorer</h3>
+              <p class="muted">选择接口 → 填参 → 调试 → 响应 → 生成代码片段</p>
+            </div>
+            <div class="card">
+              <h3>签名工具</h3>
+              <p class="muted">输入 body/params/secret → 输出签名 → 校验</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="design">
+          <h2>设计规范与组件要求</h2>
+          <ul class="list">
+            <li>视觉基调：专业可信、层级清晰、强引导</li>
+            <li>布局：12 栅格、内容宽 1200-1360、文档页固定侧栏</li>
+            <li>组件：导航、目录树、卡片、步骤条、参数表、代码块、状态组件</li>
+            <li>交互：置灰提示、错误态下一步建议、复制能力</li>
+          </ul>
+        </section>
+
+        <section id="delivery">
+          <h2>交付物与里程碑</h2>
+          <div class="card">
+            <h3>设计交付清单</h3>
+            <ul class="list">
+              <li>全站信息架构与导航组件</li>
+              <li>首页（PC）</li>
+              <li>产品能力页模板</li>
+              <li>文档中心框架与快速开始</li>
+              <li>API 参考模板</li>
+              <li>支持中心（FAQ/公告）</li>
+              <li>控制台框架与关键页面</li>
+            </ul>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="footer">
+      本页面由 PRD 自动生成，用于设计协作评审与可视化展示。
+    </div>
+  </div>
+</body>
+</html>

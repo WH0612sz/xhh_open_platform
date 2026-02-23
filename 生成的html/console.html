@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>控制台 · 腾讯公益开放平台</title>
+  <link rel="stylesheet" href="./open_platform.css" />
+</head>
+<body data-page="console">
+  <header>
+    <div class="container header-inner">
+      <div class="logo">
+        <div class="logo-badge">益</div>
+        控制台
+      </div>
+      <nav class="nav">
+        <a data-page="home" href="./index.html">首页</a>
+        <a data-page="capabilities" href="./capabilities.html">产品能力</a>
+        <a data-page="docs" href="./docs.html">文档中心</a>
+        <a data-page="console" href="./console.html">控制台</a>
+        <a data-page="api" href="./api.html">API 参考</a>
+        <a data-page="support" href="./support.html">支持与公告</a>
+      </nav>
+      <button class="btn">创建应用</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="section">
+      <h2>概览 Dashboard</h2>
+      <div class="grid grid-3">
+        <div class="card"><h3>应用数</h3><p class="muted">2 个</p></div>
+        <div class="card"><h3>近 7 天游调用</h3><p class="muted">18,240 次</p></div>
+        <div class="card"><h3>错误率</h3><p class="muted">0.6%</p></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>应用管理</h2>
+      <div class="card">
+        <table class="table">
+          <thead>
+            <tr><th>应用名</th><th>AppID</th><th>状态</th><th>已开通能力</th><th>最近调用</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>公益捐赠H5</td><td>GY2026APP01</td><td>已上线</td><td>捐赠、小红花</td><td>10 分钟前</td></tr>
+            <tr><td>企业公益平台</td><td>GY2026APP02</td><td>审核中</td><td>数据查询</td><td>2 天前</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>密钥与安全</h2>
+      <div class="card">
+        <p class="muted">AppID：GY2026APP01</p>
+        <p class="muted">AppSecret：************ <button class="btn secondary">显示</button></p>
+        <p class="muted">IP 白名单：已配置（3 个地址）</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>权限申请与回调</h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>已开通权限</h3>
+          <ul class="list">
+            <li>donation.write</li>
+            <li>donation.read</li>
+            <li>badge.write</li>
+          </ul>
+          <button class="btn secondary">申请新权限</button>
+        </div>
+        <div class="card">
+          <h3>回调配置</h3>
+          <ul class="list">
+            <li>支付回调：https://partner.com/callback/pay</li>
+            <li>发放回调：https://partner.com/callback/badge</li>
+          </ul>
+          <button class="btn secondary">管理回调</button>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      控制台为 P0 必做模块，当前展示 MVP 页面框架。
+    </footer>
+  </main>
+  <script src="./open_platform.js"></script>
+</body>
+</html>

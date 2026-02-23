@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>方案C：花朵绽放风格</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .popup {
+            width: 340px;
+            min-height: 500px;
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: popIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            /* 辐射渐变背景 */
+            background: radial-gradient(circle at center 120px, 
+                #FFE5E5 0%,
+                #FFF0E5 25%,
+                #FFF8F0 50%,
+                #FFFFFF 80%);
+        }
+
+        @keyframes popIn {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* 顶部装饰星星 */
+        .stars {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 14px;
+            color: rgba(237, 49, 66, 0.3);
+            letter-spacing: 12px;
+        }
+
+        /* 中心大红花 */
+        .flower-center {
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+
+        .flower-main {
+            font-size: 120px;
+            display: block;
+            animation: bloom 3s ease-in-out infinite;
+            filter: drop-shadow(0 8px 24px rgba(237, 49, 66, 0.3));
+        }
+
+        @keyframes bloom {
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+            }
+            50% {
+                transform: scale(1.05) rotate(5deg);
+            }
+        }
+
+        .flower-label {
+            margin-top: -20px;
+            font-size: 20px;
+            font-weight: 700;
+            color: #ED3142;
+            text-shadow: 0 2px 8px rgba(237, 49, 66, 0.2);
+        }
+
+        /* 飘散的花瓣 */
+        .petal {
+            position: absolute;
+            font-size: 24px;
+            animation: fall 4s ease-in-out infinite;
+            opacity: 0;
+        }
+
+        .petal:nth-child(1) {
+            top: 60px;
+            left: 20%;
+            animation-delay: 0s;
+        }
+
+        .petal:nth-child(2) {
+            top: 80px;
+            right: 15%;
+            animation-delay: 0.8s;
+        }
+
+        .petal:nth-child(3) {
+            top: 120px;
+            left: 10%;
+            animation-delay: 1.6s;
+        }
+
+        .petal:nth-child(4) {
+            top: 100px;
+            right: 25%;
+            animation-delay: 2.4s;
+        }
+
+        .petal:nth-child(5) {
+            top: 140px;
+            left: 25%;
+            animation-delay: 3.2s;
+        }
+
+        .petal:nth-child(6) {
+            top: 110px;
+            right: 10%;
+            animation-delay: 1.2s;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(1);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(200px) rotate(360deg) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        /* 内容区域 */
+        .content {
+            position: relative;
+            padding: 280px 28px 28px;
+            z-index: 10;
+        }
+
+        .tagline {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            color: #ED3142;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .description {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .activity-name {
+            color: #ED3142;
+            font-weight: 600;
+        }
+
+        /* 微信状态预览 */
+        .status-preview {
+            background: white;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 16px rgba(237, 49, 66, 0.1);
+            border: 2px solid #FFE5E5;
+        }
+
+        .preview-label {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 10px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .preview-label::before,
+        .preview-label::after {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #ddd);
+        }
+
+        .preview-label::after {
+            background: linear-gradient(to left, transparent, #ddd);
+        }
+
+        .preview-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .preview-flower {
+            font-size: 28px;
+            animation: wiggle 2s ease-in-out infinite;
+        }
+
+        @keyframes wiggle {
+            0%, 100% {
+                transform: rotate(0deg);
+            }
+            25% {
+                transform: rotate(-10deg);
+            }
+            75% {
+                transform: rotate(10deg);
+            }
+        }
+
+        .preview-text {
+            font-size: 15px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        /* CTA按钮 - 花瓣装饰 */
+        .cta-container {
+            position: relative;
+        }
+
+        .button-flower {
+            position: absolute;
+            font-size: 20px;
+            animation: rotate-flower 3s linear infinite;
+        }
+
+        .button-flower:nth-child(1) {
+            top: 50%;
+            left: -10px;
+            transform: translateY(-50%);
+        }
+
+        .button-flower:nth-child(2) {
+            top: 50%;
+            right: -10px;
+            transform: translateY(-50%);
+            animation-direction: reverse;
+        }
+
+        @keyframes rotate-flower {
+            0%, 100% {
+                transform: translateY(-50%) rotate(0deg) scale(1);
+            }
+            50% {
+                transform: translateY(-50%) rotate(180deg) scale(1.2);
+            }
+        }
+
+        .cta-button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #ED3142 0%, #FF6B81 100%);
+            color: white;
+            border: none;
+            border-radius: 28px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 16px rgba(237, 49, 66, 0.3);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 按钮光芒效果 */
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 30%,
+                rgba(255, 255, 255, 0.3) 50%,
+                transparent 70%
+            );
+            transform: rotate(45deg);
+            animation: shine 3s ease-in-out infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                left: -100%;
+            }
+            50%, 100% {
+                left: 100%;
+            }
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(237, 49, 66, 0.4);
+        }
+
+        .cta-button:active {
+            transform: translateY(0);
+        }
+
+        .cta-subtitle {
+            text-align: center;
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        /* 统计信息 */
+        .stats {
+            text-align: center;
+            font-size: 13px;
+            color: #999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .stats strong {
+            color: #ED3142;
+        }
+
+        /* 设计标注 */
+        .design-notes {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 12px;
+            max-width: 300px;
+            line-height: 1.5;
+        }
+
+        .design-notes h4 {
+            margin-bottom: 8px;
+            color: #FFE5E5;
+        }
+
+        .design-notes ul {
+            list-style: none;
+        }
+
+        .design-notes li {
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="popup">
+        <!-- 顶部星星装饰 -->
+        <div class="stars">✦ ✿ ✦</div>
+
+        <!-- 飘散的花瓣 -->
+        <div class="petal">🌸</div>
+        <div class="petal">🌺</div>
+        <div class="petal">🌸</div>
+        <div class="petal">🌺</div>
+        <div class="petal">🌸</div>
+        <div class="petal">🌺</div>
+
+        <!-- 中心大红花 -->
+        <div class="flower-center">
+            <span class="flower-main">🌺</span>
+            <div class="flower-label">绽放</div>
+        </div>
+
+        <!-- 内容区域 -->
+        <div class="content">
+            <div class="tagline">
+                你的善意<br>已经绽放
+            </div>
+
+            <div class="description">
+                感谢参与<br>
+                <span class="activity-name">「献血点亮生命之光」</span>
+            </div>
+
+            <!-- 微信状态预览 -->
+            <div class="status-preview">
+                <div class="preview-label">朋友将看到</div>
+                <div class="preview-content">
+                    <span class="preview-flower">🌺</span>
+                    <span class="preview-text">献血点亮生命之光</span>
+                </div>
+            </div>
+
+            <!-- CTA按钮 -->
+            <div class="cta-container">
+                <span class="button-flower">🌸</span>
+                <button class="cta-button">
+                    <span style="position: relative; z-index: 1;">🌸 戴上小红花 🌸</span>
+                </button>
+                <span class="button-flower">🌸</span>
+            </div>
+            <p class="cta-subtitle">设为我的微信状态</p>
+            
+            <!-- 统计 -->
+            <p class="stats">
+                <span>👥</span>
+                <span>已有 <strong>23.8万</strong> 人戴上</span>
+            </p>
+        </div>
+    </div>
+
+    <!-- 设计标注 -->
+    <div class="design-notes">
+        <h4>方案C：设计要点</h4>
+        <ul>
+            <li>✓ 辐射渐变背景（暖橙→浅粉→白）</li>
+            <li>✓ 超大红花icon（120px）+ 呼吸动效</li>
+            <li>✓ 花瓣飘散粒子动画（6个）</li>
+            <li>✓ "绽放"主题标语</li>
+            <li>✓ 按钮光芒扫过效果</li>
+            <li>✓ 花瓣装饰按钮两侧</li>
+            <li>✓ 强化"花朵绽放"隐喻</li>
+        </ul>
+    </div>
+</body>
+</html>

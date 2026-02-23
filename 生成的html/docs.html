@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>文档中心 · 腾讯公益开放平台</title>
+  <link rel="stylesheet" href="./open_platform.css" />
+</head>
+<body data-page="docs">
+  <header>
+    <div class="container header-inner">
+      <div class="logo">
+        <div class="logo-badge">益</div>
+        腾讯公益开放平台
+      </div>
+      <nav class="nav">
+        <a data-page="home" href="./index.html">首页</a>
+        <a data-page="capabilities" href="./capabilities.html">产品能力</a>
+        <a data-page="docs" href="./docs.html">文档中心</a>
+        <a data-page="console" href="./console.html">控制台</a>
+        <a data-page="api" href="./api.html">API 参考</a>
+        <a data-page="support" href="./support.html">支持与公告</a>
+      </nav>
+      <button class="btn">下载 SDK</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="section">
+      <h2>文档中心</h2>
+      <p class="muted">新手 → 开发基础 → API 参考，提供一步步接入指引。</p>
+    </section>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <h4>目录</h4>
+        <input class="input" placeholder="搜索文档 / API" />
+        <a href="#quickstart">快速开始</a>
+        <a href="#auth">鉴权与签名</a>
+        <a href="#callback">回调配置</a>
+        <a href="#errors">错误码</a>
+        <a href="#sdk">SDK 文档</a>
+        <a href="#changelog">更新日志</a>
+      </aside>
+
+      <div>
+        <section id="quickstart" class="section">
+          <h2>快速开始</h2>
+          <div class="card">
+            <ol class="list">
+              <li>注册并创建应用，获取 AppID / Secret</li>
+              <li>调用 Token 接口，获得访问凭证</li>
+              <li>调用核心 API（创建订单 / 查询项目）</li>
+              <li>配置回调并验证结果</li>
+            </ol>
+            <div class="code">
+<pre><code>POST /v1/auth/token
+{
+  "app_id": "你的AppID",
+  "app_secret": "你的Secret"
+}</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section id="auth" class="section">
+          <h2>鉴权与签名</h2>
+          <div class="card">
+            <p class="muted">所有请求需携带 Token 与签名，签名规则包含 body + timestamp + nonce。</p>
+          </div>
+        </section>
+
+        <section id="callback" class="section">
+          <h2>回调配置</h2>
+          <div class="card">
+            <p class="muted">在控制台配置回调地址，接收支付/发放等事件通知。</p>
+          </div>
+        </section>
+
+        <section id="errors" class="section">
+          <h2>错误码</h2>
+          <div class="card">
+            <table class="table">
+              <thead>
+                <tr><th>错误码</th><th>说明</th><th>建议</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>4001</td><td>签名校验失败</td><td>检查签名规则与时间戳</td></tr>
+                <tr><td>4010</td><td>Token 失效</td><td>重新获取 Token</td></tr>
+                <tr><td>5001</td><td>内部错误</td><td>稍后重试或提交工单</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="sdk" class="section">
+          <h2>SDK 文档</h2>
+          <div class="grid grid-2">
+            <div class="card"><strong>Java SDK</strong><p class="muted">适用于服务端调用与签名封装</p></div>
+            <div class="card"><strong>Python SDK</strong><p class="muted">适用于脚本与数据处理</p></div>
+          </div>
+        </section>
+
+        <section id="changelog" class="section">
+          <h2>更新日志</h2>
+          <ul class="list">
+            <li>2026-02-20：新增活动发放能力</li>
+            <li>2026-02-12：签名规则新增 nonce 校验</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <footer>
+      如需进一步细化 API 文档，可在此基础上补齐接口详情页。
+    </footer>
+  </main>
+  <script src="./open_platform.js"></script>
+</body>
+</html>

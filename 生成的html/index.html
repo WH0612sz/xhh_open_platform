@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>腾讯公益开放平台 · MVP</title>
+  <link rel="stylesheet" href="./open_platform.css" />
+</head>
+<body data-page="home">
+  <header>
+    <div class="container header-inner">
+      <div class="logo">
+        <div class="logo-badge">益</div>
+        腾讯公益开放平台
+        <span class="badge">MVP</span>
+      </div>
+      <nav class="nav">
+        <a data-page="home" href="./index.html">首页</a>
+        <a data-page="capabilities" href="./capabilities.html">产品能力</a>
+        <a data-page="docs" href="./docs.html">文档中心</a>
+        <a data-page="console" href="./console.html">控制台</a>
+        <a data-page="api" href="./api.html">API 参考</a>
+        <a data-page="support" href="./support.html">支持与公告</a>
+      </nav>
+      <div style="display:flex; gap:10px;">
+        <button class="btn secondary">登录</button>
+        <button class="btn">快速开始</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <span class="badge">按场景组织 · 全链路自助</span>
+        <h1>让合作方 30 分钟理解能力，1 天内跑通接入闭环</h1>
+        <p class="subtitle">将原始 API 文档升级为“开放平台产品”，提供清晰的能力结构、接入路径与自助控制台，显著降低合作方接入成本。</p>
+        <div style="display:flex; gap:12px; margin-top:18px;">
+          <a class="btn" href="./docs.html#quickstart">开始接入</a>
+          <a class="btn secondary" href="./capabilities.html">查看能力</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <h3>接入闭环（MVP）</h3>
+        <ol class="list">
+          <li>注册与创建应用</li>
+          <li>获取调用凭证与签名规则</li>
+          <li>调用核心 API & 配置回调</li>
+        </ol>
+        <div class="kpi" style="margin-top:12px;">
+          <span>目标：首日调用成功率 ≥ 60%</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>合作场景</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>捐赠接入</h3>
+          <p class="muted">支持乐捐/月捐/一起捐与通用支付链路。</p>
+          <a class="btn secondary" href="./capabilities.html#donation">查看详情</a>
+        </div>
+        <div class="card">
+          <h3>小红花与勋章</h3>
+          <p class="muted">无感发放/跳转领取，活动权益联动。</p>
+          <a class="btn secondary" href="./capabilities.html#badge">查看详情</a>
+        </div>
+        <div class="card">
+          <h3>数据与机构管理</h3>
+          <p class="muted">数据查询、账单下载、机构授权与成员管理。</p>
+          <a class="btn secondary" href="./capabilities.html#data">查看详情</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>3 步开始</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <span class="tag">Step 1</span>
+          <h3>创建应用</h3>
+          <p class="muted">在控制台创建应用，获得 AppID 与 Secret。</p>
+        </div>
+        <div class="card">
+          <span class="tag">Step 2</span>
+          <h3>完成鉴权</h3>
+          <p class="muted">获取 Token、配置签名规则，掌握请求规范。</p>
+        </div>
+        <div class="card">
+          <span class="tag">Step 3</span>
+          <h3>联调回调</h3>
+          <p class="muted">完成支付/发放回调配置，打通闭环。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>最新公告</h2>
+      <div class="card">
+        <ul class="list">
+          <li>【上线】小红花能力新增“活动发放”接口（2026-02-20）</li>
+          <li>【维护】支付接口将于 2 月 28 日晚间升级（2026-02-18）</li>
+          <li>【变更】签名规则新增 nonce 校验（2026-02-10）</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>精选文档</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>快速开始</h3>
+          <p class="muted">从注册到首次 API 调用成功。</p>
+          <a class="btn secondary" href="./docs.html#quickstart">立即查看</a>
+        </div>
+        <div class="card">
+          <h3>签名与鉴权</h3>
+          <p class="muted">请求规范、签名规则与 Token 获取。</p>
+          <a class="btn secondary" href="./docs.html#auth">立即查看</a>
+        </div>
+        <div class="card">
+          <h3>错误码与排查</h3>
+          <p class="muted">核心错误码与故障排查建议。</p>
+          <a class="btn secondary" href="./docs.html#errors">立即查看</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      MVP 版本已覆盖门户、能力、文档、控制台与支持中心。
+    </footer>
+  </main>
+  <script src="./open_platform.js"></script>
+</body>
+</html>

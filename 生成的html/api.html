@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>API 参考 · 腾讯公益开放平台</title>
+  <link rel="stylesheet" href="./open_platform.css" />
+</head>
+<body data-page="api">
+  <header>
+    <div class="container header-inner">
+      <div class="logo">
+        <div class="logo-badge">益</div>
+        腾讯公益开放平台
+      </div>
+      <nav class="nav">
+        <a data-page="home" href="./index.html">首页</a>
+        <a data-page="capabilities" href="./capabilities.html">产品能力</a>
+        <a data-page="docs" href="./docs.html">文档中心</a>
+        <a data-page="console" href="./console.html">控制台</a>
+        <a data-page="api" href="./api.html">API 参考</a>
+        <a data-page="support" href="./support.html">支持与公告</a>
+      </nav>
+      <button class="btn secondary">在线调试（即将开放）</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="section">
+      <h2>接口：创建捐赠订单</h2>
+      <p class="muted">适用能力：捐赠能力 · 权限范围：donation.write · 环境：正式/沙箱</p>
+      <div class="badge">POST /v1/donation/order</div>
+    </section>
+
+    <section class="section">
+      <h2>请求信息</h2>
+      <table class="table">
+        <tbody>
+          <tr><th>Method</th><td>POST</td></tr>
+          <tr><th>Content-Type</th><td>application/json</td></tr>
+          <tr><th>鉴权</th><td>Token + 签名</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <h2>请求参数</h2>
+      <table class="table">
+        <thead>
+          <tr><th>字段</th><th>类型</th><th>必填</th><th>说明</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>project_id</td><td>string</td><td>是</td><td>项目编号</td></tr>
+          <tr><td>amount</td><td>int</td><td>是</td><td>金额（分）</td></tr>
+          <tr><td>order_no</td><td>string</td><td>是</td><td>合作方订单号</td></tr>
+          <tr><td>notify_url</td><td>string</td><td>是</td><td>支付回调地址</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <h2>请求示例</h2>
+      <div class="code">
+<pre><code>curl -X POST https://oapi.gongyi.qq.com/v1/donation/order \
+  -H "Authorization: Bearer {token}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "project_id": "2026A001",
+    "amount": 1000,
+    "order_no": "ORD20260222001",
+    "notify_url": "https://partner.com/callback"
+  }'</code></pre>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>响应示例</h2>
+      <div class="code">
+<pre><code>{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "order_id": "GY20260222088",
+    "pay_url": "https://pay.gongyi.qq.com/xxx"
+  }
+}</code></pre>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>错误码</h2>
+      <table class="table">
+        <thead>
+          <tr><th>错误码</th><th>说明</th><th>建议</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>4001</td><td>签名错误</td><td>检查签名与时间戳</td></tr>
+          <tr><td>4020</td><td>权限不足</td><td>申请 donation.write 权限</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section">
+      <h2>关联文档</h2>
+      <ul class="list">
+        <li><a href="./docs.html#auth">签名与鉴权</a></li>
+        <li><a href="./docs.html#callback">回调配置</a></li>
+        <li><a href="./support.html">FAQ 与支持</a></li>
+      </ul>
+    </section>
+
+    <footer>
+      更多接口可按照本模板批量补齐。
+    </footer>
+  </main>
+  <script src="./open_platform.js"></script>
+</body>
+</html>
