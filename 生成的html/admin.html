@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>管理中心 · 腾讯公益开放平台</title>
+  <link rel="stylesheet" href="./open_platform.css" />
+</head>
+<body data-page="admin">
+  <header>
+    <div class="container header-inner">
+      <div class="logo">
+        <div class="logo-badge">🌺</div>
+        腾讯公益开放平台
+      </div>
+      <nav class="nav">
+        <a data-page="home" href="./index.html">首页</a>
+        <a data-page="api" href="./api.html">API</a>
+        <a data-page="docs" href="./docs.html">帮助文档</a>
+        <a data-page="console" href="./console.html">控制台</a>
+        <a data-page="admin" href="./admin.html" data-admin-only>管理中心</a>
+      </nav>
+      <div class="header-actions">
+        <a class="btn secondary" href="./admin.html?logout=1">退出登录</a>
+        <div class="account">
+          <button class="btn secondary" type="button" data-account-login>登录</button>
+          <a class="avatar" href="./account.html" data-account-avatar title="账号管理">
+            <span class="avatar-circle">👤</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="section" data-admin-denied style="display:none;">
+      <h2>暂无权限</h2>
+      <p class="muted">管理中心仅管理员账号登录后可见。你可以通过 URL 参数模拟管理员登录。</p>
+      <div class="card" style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+        <a class="btn" href="./admin.html?role=admin">以管理员身份进入</a>
+        <a class="btn secondary" href="./index.html">返回首页</a>
+      </div>
+    </section>
+
+    <div data-admin-content>
+      <section class="section">
+        <h2>审批列表</h2>
+        <p class="muted">展示应用创建与接口权限开通的审批事项（原型示意：不对接真实后端）。</p>
+      </section>
+
+      <section class="section">
+        <h2>应用申请审批</h2>
+        <div class="card">
+          <table class="table">
+            <thead>
+              <tr><th>申请时间</th><th>应用名</th><th>AppID</th><th>申请方</th><th>状态</th><th>操作</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2026-02-23 11:04</td>
+                <td>企业公益平台</td>
+                <td><span class="mono">GY2026APP02</span></td>
+                <td>ACME Corp</td>
+                <td>待审批</td>
+                <td>
+                  <button class="btn secondary" type="button" disabled>驳回</button>
+                  <button class="btn" type="button" disabled>通过</button>
+                </td>
+              </tr>
+              <tr>
+                <td>2026-02-22 17:20</td>
+                <td>公益捐赠H5</td>
+                <td><span class="mono">GY2026APP01</span></td>
+                <td>Partner A</td>
+                <td>已通过</td>
+                <td>
+                  <button class="btn secondary" type="button" disabled>查看</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>接口权限申请审批</h2>
+        <div class="card">
+          <table class="table">
+            <thead>
+              <tr><th>申请时间</th><th>AppID</th><th>申请 scope</th><th>用途说明</th><th>状态</th><th>操作</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2026-02-23 11:18</td>
+                <td><span class="mono">GY2026APP02</span></td>
+                <td>data.read</td>
+                <td class="muted">对账统计与账单下载</td>
+                <td>待审批</td>
+                <td>
+                  <button class="btn secondary" type="button" disabled>驳回</button>
+                  <button class="btn" type="button" disabled>通过</button>
+                </td>
+              </tr>
+              <tr>
+                <td>2026-02-20 09:40</td>
+                <td><span class="mono">GY2026APP01</span></td>
+                <td>donation.write</td>
+                <td class="muted">创建捐赠订单</td>
+                <td>已通过</td>
+                <td>
+                  <button class="btn secondary" type="button" disabled>查看</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" data-super-admin-only style="display:none;">
+        <h2>权限管理（仅超级管理员可见）</h2>
+        <p class="muted">维护管理员列表与可操作权限范围，支持关键权限的授权与收回。</p>
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>管理员列表</h3>
+            <table class="table">
+              <thead>
+                <tr><th>管理员</th><th>角色</th><th>权限范围</th><th>状态</th><th>操作</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>admin@gongyi.qq.com</td>
+                  <td>管理员</td>
+                  <td>应用审批 / 权限审批</td>
+                  <td>启用</td>
+                  <td><button class="btn secondary" type="button" disabled>调整</button></td>
+                </tr>
+                <tr>
+                  <td>super@gongyi.qq.com</td>
+                  <td>超级管理员</td>
+                  <td>全部审批 + 权限管理</td>
+                  <td>启用</td>
+                  <td><button class="btn secondary" type="button" disabled>调整</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card">
+            <h3>权限配置</h3>
+            <table class="table">
+              <thead>
+                <tr><th>权限项</th><th>描述</th><th>绑定角色</th><th>状态</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>审批管理</td><td>应用与接口权限审批</td><td>管理员/超级管理员</td><td>启用</td></tr>
+                <tr><td>权限管理</td><td>管理员权限分配</td><td>超级管理员</td><td>启用</td></tr>
+                <tr><td>审计导出</td><td>审批记录导出</td><td>超级管理员</td><td>启用</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        管理中心为管理员工具入口：审批应用/权限开通申请，并可追溯历史记录。
+      </footer>
+    </div>
+  </main>
+
+  <script src="./open_platform.js"></script>
+</body>
+</html>

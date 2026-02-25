@@ -10,18 +10,25 @@
   <header>
     <div class="container header-inner">
       <div class="logo">
-        <div class="logo-badge">益</div>
-        控制台
+        <div class="logo-badge">🌺</div>
+        腾讯公益开放平台
       </div>
       <nav class="nav">
         <a data-page="home" href="./index.html">首页</a>
-        <a data-page="capabilities" href="./capabilities.html">产品能力</a>
-        <a data-page="docs" href="./docs.html">文档中心</a>
+        <a data-page="api" href="./api.html">API</a>
+        <a data-page="docs" href="./docs.html">帮助文档</a>
         <a data-page="console" href="./console.html">控制台</a>
-        <a data-page="api" href="./api.html">API 参考</a>
-        <a data-page="support" href="./support.html">支持与公告</a>
+        <a data-page="admin" href="./admin.html" data-admin-only>管理中心</a>
       </nav>
-      <button class="btn">创建应用</button>
+      <div class="header-actions">
+        <button class="btn" type="button" data-open-app-create>创建应用</button>
+        <div class="account">
+          <button class="btn secondary" type="button" data-account-login>登录</button>
+          <a class="avatar" href="./account.html" data-account-avatar title="账号管理">
+            <span class="avatar-circle">👤</span>
+          </a>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -37,55 +44,225 @@
 
     <section class="section">
       <h2>应用管理</h2>
-      <div class="card">
-        <table class="table">
-          <thead>
-            <tr><th>应用名</th><th>AppID</th><th>状态</th><th>已开通能力</th><th>最近调用</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>公益捐赠H5</td><td>GY2026APP01</td><td>已上线</td><td>捐赠、小红花</td><td>10 分钟前</td></tr>
-            <tr><td>企业公益平台</td><td>GY2026APP02</td><td>审核中</td><td>数据查询</td><td>2 天前</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
 
-    <section class="section">
-      <h2>密钥与安全</h2>
-      <div class="card">
-        <p class="muted">AppID：GY2026APP01</p>
-        <p class="muted">AppSecret：************ <button class="btn secondary">显示</button></p>
-        <p class="muted">IP 白名单：已配置（3 个地址）</p>
-      </div>
-    </section>
+      <div class="grid" style="margin-top: 12px;">
+        <div class="card" data-app-card="GY2026APP01">
+          <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; align-items:flex-start;">
+            <h3 style="margin: 0;">公益捐赠H5</h3>
+            <div class="tag">已上线</div>
+          </div>
+          <div class="meta-grid" style="margin-top: 10px;">
+            <div><span class="muted">AppID：</span><span class="mono">GY2026APP01</span></div>
+            <div><span class="muted">密钥：</span><span class="mono" data-secret-mask>************</span>
+              <button class="btn secondary" type="button" data-toggle-secret data-secret="sk_live_GY2026APP01_xxxxxx">显示</button>
+            </div>
+            <div><span class="muted">状态：</span>已上线</div>
+          </div>
 
-    <section class="section">
-      <h2>权限申请与回调</h2>
-      <div class="grid grid-2">
-        <div class="card">
-          <h3>已开通权限</h3>
-          <ul class="list">
-            <li>donation.write</li>
-            <li>donation.read</li>
-            <li>badge.write</li>
-          </ul>
-          <button class="btn secondary">申请新权限</button>
+          <div class="table-wrap" style="margin-top: 12px;">
+            <table class="table">
+              <thead>
+                <tr><th>开通能力</th><th>接口权限</th><th>业务信息</th><th>操作</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>捐赠</td>
+                  <td><a href="./api.html#donation-api">创建捐赠订单</a>（donation.write）</td>
+                  <td>项目 ID、回调地址</td>
+                  <td>
+                    <button class="btn secondary" type="button">编辑</button>
+                    <button class="btn secondary" type="button">删除</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>捐赠</td>
+                  <td><a href="./api.html#api-pay">订单查询</a>（donation.read）</td>
+                  <td>订单号</td>
+                  <td>
+                    <button class="btn secondary" type="button">编辑</button>
+                    <button class="btn secondary" type="button">删除</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>小红花</td>
+                  <td><a href="./api.html#badge-api">发放小红花</a>（badge.write）</td>
+                  <td>活动 ID</td>
+                  <td>
+                    <button class="btn secondary" type="button">编辑</button>
+                    <button class="btn secondary" type="button">删除</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>机构管理</td>
+                  <td><a href="./api.html#org-api">机构授权</a>（org.manage）</td>
+                  <td>机构编号</td>
+                  <td>
+                    <button class="btn secondary" type="button">编辑</button>
+                    <button class="btn secondary" type="button">删除</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div style="display:flex; justify-content:flex-end; margin-top: 10px;">
+            <button class="btn" type="button" data-open-permission data-target="#permission-modal">开通新权限</button>
+          </div>
         </div>
+
+        <div class="card" data-app-card="GY2026APP02">
+          <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; align-items:flex-start;">
+            <h3 style="margin: 0;">企业公益平台</h3>
+            <div class="tag">审核中</div>
+          </div>
+          <div class="meta-grid" style="margin-top: 10px;">
+            <div><span class="muted">AppID：</span><span class="mono">GY2026APP02</span></div>
+            <div><span class="muted">密钥：</span><span class="mono" data-secret-mask>************</span>
+              <button class="btn secondary" type="button" data-toggle-secret data-secret="sk_live_GY2026APP02_xxxxxx">显示</button>
+            </div>
+            <div><span class="muted">状态：</span>审核中</div>
+          </div>
+
+          <div class="table-wrap" style="margin-top: 12px;">
+            <table class="table">
+              <thead>
+                <tr><th>开通能力</th><th>接口权限</th><th>业务信息</th><th>操作</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>数据与账单</td>
+                  <td><a href="./api.html#api-project-data">查询公益数据</a>（data.read）</td>
+                  <td>查询时间范围</td>
+                  <td>
+                    <button class="btn secondary" type="button">编辑</button>
+                    <button class="btn secondary" type="button">删除</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>数据与账单</td>
+                  <td><a href="./api.html#data-api">账单下载</a>（bill.download）</td>
+                  <td>账单日期、机构编号</td>
+                  <td>
+                    <button class="btn secondary" type="button">编辑</button>
+                    <button class="btn secondary" type="button">删除</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div style="display:flex; justify-content:flex-end; margin-top: 10px;">
+            <button class="btn" type="button" data-open-permission data-target="#permission-modal">开通新权限</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="modal" id="permission-modal" aria-hidden="true">
+      <div class="modal-panel" role="dialog" aria-modal="true">
+        <div class="modal-header">
+          <h3>开通新权限</h3>
+          <button class="btn secondary" type="button" data-modal-close>关闭</button>
+        </div>
+        <p class="muted" style="margin-top: 8px;">选择需要开通的接口权限（可多选），提交后进入审批流程。</p>
+
+        <div class="modal-body">
+          <div class="grid grid-2">
+            <label class="checkbox">
+              <input type="checkbox" />
+              <span>捐赠：创建捐赠订单（donation.write）</span>
+            </label>
+            <label class="checkbox">
+              <input type="checkbox" />
+              <span>捐赠：订单查询（donation.read）</span>
+            </label>
+            <label class="checkbox">
+              <input type="checkbox" />
+              <span>小红花：发放小红花（badge.write）</span>
+            </label>
+            <label class="checkbox">
+              <input type="checkbox" />
+              <span>数据与账单：查询公益数据（data.read）</span>
+            </label>
+            <label class="checkbox">
+              <input type="checkbox" />
+              <span>数据与账单：账单下载（bill.download）</span>
+            </label>
+            <label class="checkbox">
+              <input type="checkbox" />
+              <span>机构管理：机构授权（org.manage）</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn secondary" type="button" data-modal-close>取消</button>
+          <button class="btn" type="button">提交申请</button>
+        </div>
+      </div>
+    </div>
+
+    <section class="section">
+      <h2>回调配置与日志</h2>
+      <div class="grid grid-2">
         <div class="card">
           <h3>回调配置</h3>
           <ul class="list">
             <li>支付回调：https://partner.com/callback/pay</li>
             <li>发放回调：https://partner.com/callback/badge</li>
+            <li>机构授权回调：https://partner.com/callback/org</li>
           </ul>
           <button class="btn secondary">管理回调</button>
+        </div>
+        <div class="card">
+          <h3>回调日志</h3>
+          <table class="table">
+            <thead>
+              <tr><th>时间</th><th>事件</th><th>请求 ID</th><th>状态</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>2026-02-23 10:20</td><td>donation.paid</td><td>REQ2026022301</td><td>成功</td></tr>
+              <tr><td>2026-02-23 09:58</td><td>badge.grant</td><td>REQ2026022300</td><td>成功</td></tr>
+              <tr><td>2026-02-22 18:12</td><td>org.auth</td><td>REQ2026022207</td><td>重试中</td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </section>
 
     <footer>
-      控制台为 P0 必做模块，当前展示 MVP 页面框架。
+      控制台提供应用、密钥、权限、回调与日志的自助管理能力。
     </footer>
   </main>
+
+  <div class="modal" id="app-create-modal" aria-hidden="true">
+    <div class="modal-panel" role="dialog" aria-modal="true">
+      <div class="modal-header">
+        <h3>创建应用申请</h3>
+        <button class="btn secondary" type="button" data-modal-close>关闭</button>
+      </div>
+      <p class="muted" style="margin-top: 8px;">填写应用名称与申请说明，提交后进入审批流程。</p>
+
+      <div class="modal-body">
+        <div class="form-grid">
+          <label>
+            <div class="muted" style="margin-bottom: 6px;">应用名称</div>
+            <input class="input" type="text" placeholder="请输入应用名称" />
+          </label>
+          <label>
+            <div class="muted" style="margin-bottom: 6px;">申请说明</div>
+            <textarea class="input" rows="4" placeholder="请填写申请说明"></textarea>
+          </label>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn secondary" type="button" data-modal-close>取消</button>
+        <button class="btn" type="button">提交申请</button>
+      </div>
+    </div>
+  </div>
+
   <script src="./open_platform.js"></script>
 </body>
 </html>

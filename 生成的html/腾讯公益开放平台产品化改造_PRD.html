@@ -197,7 +197,7 @@
   <div class="container">
     <div class="hero">
       <div>
-        <span class="badge">V1.0 · 2026-02-22</span>
+        <span class="badge">V1.3 · 2026-02-24</span>
         <h1>开放平台产品结构升级，面向“合作方场景接入”的全链路自助化</h1>
         <p class="subtitle">本 PRD 用于指导设计师输出完整框架与页面交互，覆盖门户、产品能力、文档中心、支持中心与控制台（P0 必做）。</p>
         <div class="meta">
@@ -240,6 +240,7 @@
         <a href="#journey">关键用户旅程</a>
         <a href="#pages">页面级 PRD</a>
         <a href="#console">控制台（P0）</a>
+        <a href="#admin">管理中心</a>
         <a href="#tools">开发者工具</a>
         <a href="#design">设计规范</a>
         <a href="#delivery">交付物</a>
@@ -253,7 +254,7 @@
               <h3>P0（MVP）</h3>
               <ul class="list">
                 <li>门户（首页）</li>
-                <li>产品能力中心</li>
+                <li>首页场景/能力概览（含接入步骤）</li>
                 <li>文档中心（新手/基础/API/日志）</li>
                 <li>支持中心（FAQ/公告）</li>
                 <li><strong>控制台基础（应用/密钥/权限/回调）</strong></li>
@@ -273,7 +274,8 @@
         <section id="ia">
           <h2>信息架构与导航</h2>
           <div class="card">
-            <p class="muted">一级导航建议：首页、产品能力、文档中心、控制台、开发者工具、支持与公告。</p>
+            <p class="muted">一级导航建议：首页、API、帮助文档、控制台、管理中心（管理员）、开发者工具；右侧账号模块（登录/头像/账号管理入口）。</p>
+            <p class="muted">导航左侧标题统一为“腾讯公益开放平台”。</p>
             <p class="muted">全站统一：Header/ Footer、左侧目录树、全站搜索（API/文档/FAQ/公告）。</p>
           </div>
         </section>
@@ -281,7 +283,7 @@
         <section id="journey">
           <h2>关键用户旅程（新手接入）</h2>
           <ol class="list">
-            <li>首页选择场景 → 进入能力页</li>
+            <li>首页选择场景 → 查看对应接入指南 / API</li>
             <li>快速开始 → 注册/创建应用 → 获取凭证</li>
             <li>阅读开发基础 → 调用示例 API</li>
             <li>配置回调并验证 → 进入具体能力</li>
@@ -295,17 +297,18 @@
             <div class="card">
               <h3>首页</h3>
               <ul class="list">
-                <li>Hero 价值主张 + 快速开始 CTA</li>
+                <li>Hero 主标题“快速接入腾讯公益” + CTA（无标签/无描述）</li>
+                <li>接入步骤（单行箭头四步）</li>
                 <li>场景卡片（捐赠/小红花/数据/机构）</li>
-                <li>3 步接入指引、公告、精选文档</li>
+                <li>公告与精选文档</li>
               </ul>
             </div>
             <div class="card">
-              <h3>产品能力</h3>
+              <h3>管理中心（管理员）</h3>
               <ul class="list">
-                <li>左侧目录树 + 右侧概览内容</li>
-                <li>能力简介、子能力卡、前置条件</li>
-                <li>接入指南 / API / SDK 入口</li>
+                <li>应用申请审批列表（通过/驳回/备注）</li>
+                <li>接口权限（scope）申请审批列表</li>
+                <li>审批记录与审计追溯（可选）</li>
               </ul>
             </div>
             <div class="card">
@@ -329,17 +332,34 @@
         <section id="console">
           <h2>控制台（P0 必做）</h2>
           <div class="card">
-            <p class="muted">信息架构：Dashboard / 应用管理 / 权限申请 / 密钥与安全 / 回调配置与日志。</p>
+            <p class="muted">信息架构：Dashboard / 应用管理（应用卡片 + 权限列表） / 回调配置与日志 / 调用日志/监控 / 沙箱与测试（如有）。</p>
             <table class="table">
               <thead>
                 <tr><th>页面</th><th>关键内容</th></tr>
               </thead>
               <tbody>
-                <tr><td>应用列表/创建</td><td>应用名、AppID、状态、能力、创建流程</td></tr>
-                <tr><td>密钥与安全</td><td>Secret 显示/复制、IP 白名单、回调域名</td></tr>
+                <tr><td>应用卡片（含密钥与权限）</td><td>应用名、AppID、密钥、状态；能力/接口权限/业务信息列表；操作（编辑/删除）、开通新权限弹窗、创建应用申请弹窗（应用名称/申请说明）</td></tr>
                 <tr><td>回调配置与日志</td><td>回调 URL、事件类型、日志与重试</td></tr>
+                <tr><td>调用日志/监控</td><td>按时间/接口/状态码筛选，支持请求 ID 追踪</td></tr>
               </tbody>
             </table>
+          </div>
+        </section>
+
+        <section id="admin">
+          <h2>管理中心（仅管理员可见）</h2>
+          <div class="card">
+            <p class="muted">集中处理应用创建与接口权限（scope）开通申请；设计稿需覆盖列表、筛选、详情与审批操作。</p>
+            <table class="table">
+              <thead>
+                <tr><th>审批类型</th><th>关键字段</th><th>操作</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>应用申请审批</td><td>应用名、申请方、资质材料、状态流转</td><td>通过/驳回/备注</td></tr>
+                <tr><td>权限申请审批</td><td>AppID、scope、用途说明、风险提示</td><td>通过/驳回/备注</td></tr>
+              </tbody>
+            </table>
+            <p class="muted" style="margin-top: 10px;">权限管理模块（仅超级管理员）：管理员列表、权限配置、审计导出。</p>
           </div>
         </section>
 
@@ -362,7 +382,7 @@
           <ul class="list">
             <li>视觉基调：专业可信、层级清晰、强引导</li>
             <li>布局：12 栅格、内容宽 1200-1360、文档页固定侧栏</li>
-            <li>组件：导航、目录树、卡片、步骤条、参数表、代码块、状态组件</li>
+            <li>组件：导航、账号模块（登录/头像/账号管理）、目录树、卡片、步骤条、参数表、代码块、状态组件</li>
             <li>交互：置灰提示、错误态下一步建议、复制能力</li>
           </ul>
         </section>

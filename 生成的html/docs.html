@@ -3,32 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>文档中心 · 腾讯公益开放平台</title>
+  <title>帮助文档 · 腾讯公益开放平台</title>
   <link rel="stylesheet" href="./open_platform.css" />
 </head>
 <body data-page="docs">
   <header>
     <div class="container header-inner">
       <div class="logo">
-        <div class="logo-badge">益</div>
+        <div class="logo-badge">🌺</div>
         腾讯公益开放平台
       </div>
       <nav class="nav">
         <a data-page="home" href="./index.html">首页</a>
-        <a data-page="capabilities" href="./capabilities.html">产品能力</a>
-        <a data-page="docs" href="./docs.html">文档中心</a>
+        <a data-page="api" href="./api.html">API</a>
+        <a data-page="docs" href="./docs.html">帮助文档</a>
         <a data-page="console" href="./console.html">控制台</a>
-        <a data-page="api" href="./api.html">API 参考</a>
-        <a data-page="support" href="./support.html">支持与公告</a>
+        <a data-page="admin" href="./admin.html" data-admin-only>管理中心</a>
       </nav>
-      <button class="btn">下载 SDK</button>
+      <div class="header-actions">
+        <button class="btn" type="button">下载 SDK</button>
+        <div class="account">
+          <button class="btn secondary" type="button" data-account-login>登录</button>
+          <a class="avatar" href="./account.html" data-account-avatar title="账号管理">
+            <span class="avatar-circle">👤</span>
+          </a>
+        </div>
+      </div>
     </div>
   </header>
 
   <main class="container">
     <section class="section">
-      <h2>文档中心</h2>
-      <p class="muted">新手 → 开发基础 → API 参考，提供一步步接入指引。</p>
+      <h2>帮助文档</h2>
+      <p class="muted">快速开始、开发基础、接入指南、FAQ 与更新日志，帮助你快速完成接入。</p>
     </section>
 
     <div class="layout">
@@ -39,8 +46,14 @@
         <a href="#auth">鉴权与签名</a>
         <a href="#callback">回调配置</a>
         <a href="#errors">错误码</a>
-        <a href="#sdk">SDK 文档</a>
-        <a href="#changelog">更新日志</a>
+        <a href="#guides">接入指南（按场景）</a>
+        <a href="#guide-donation">捐赠接入</a>
+        <a href="#guide-badge">小红花与勋章</a>
+        <a href="#guide-data">数据与账单</a>
+        <a href="#guide-org">机构管理</a>
+        <a href="#sdk">SDK 与示例</a>
+        <a href="#faq">FAQ</a>
+        <a href="#changelog">更新日志/公告</a>
       </aside>
 
       <div>
@@ -93,18 +106,93 @@
           </div>
         </section>
 
+        <section id="guides" class="section">
+          <h2>接入指南（按场景）</h2>
+          <div class="grid grid-3">
+            <div class="card" id="guide-donation">
+              <h3>捐赠接入</h3>
+              <p class="muted">面向捐赠下单/支付/回调的标准接入路径。</p>
+              <ol class="list">
+                <li>创建应用并开通 donation 权限</li>
+                <li>获取 Token 与签名规则</li>
+                <li>调用捐赠接口并配置回调</li>
+              </ol>
+              <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <a class="btn secondary" href="./console.html">进入控制台</a>
+                <a class="btn" href="./api.html#donation">查看 API</a>
+              </div>
+            </div>
+            <div class="card" id="guide-badge">
+              <h3>小红花与勋章</h3>
+              <p class="muted">活动发放、领取与权益联动接入。</p>
+              <ol class="list">
+                <li>申请 badge 权限与审核</li>
+                <li>配置发放/领取回调</li>
+                <li>联调发放与查询接口</li>
+              </ol>
+              <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <a class="btn secondary" href="./console.html">进入控制台</a>
+                <a class="btn" href="./api.html#badge">查看 API</a>
+              </div>
+            </div>
+            <div class="card" id="guide-data">
+              <h3>数据与账单</h3>
+              <p class="muted">账单下载、统计报表与对账流程对接。</p>
+              <ol class="list">
+                <li>开通数据权限</li>
+                <li>配置账单下载时间范围</li>
+                <li>对接账单与统计接口</li>
+              </ol>
+              <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <a class="btn secondary" href="./console.html">进入控制台</a>
+                <a class="btn" href="./api.html#data">查看 API</a>
+              </div>
+            </div>
+            <div class="card" id="guide-org">
+              <h3>机构管理</h3>
+              <p class="muted">机构授权、成员管理与回调配置。</p>
+              <ol class="list">
+                <li>提交机构授权申请</li>
+                <li>配置机构授权/解除回调</li>
+                <li>联调成员管理与授权接口</li>
+              </ol>
+              <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <a class="btn secondary" href="./console.html">进入控制台</a>
+                <a class="btn" href="./api.html#org">查看 API</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section id="sdk" class="section">
-          <h2>SDK 文档</h2>
+          <h2>SDK 与示例</h2>
           <div class="grid grid-2">
             <div class="card"><strong>Java SDK</strong><p class="muted">适用于服务端调用与签名封装</p></div>
             <div class="card"><strong>Python SDK</strong><p class="muted">适用于脚本与数据处理</p></div>
           </div>
         </section>
 
+        <section id="faq" class="section">
+          <h2>FAQ</h2>
+          <div class="faq-item">
+            <button>如何获取 AppID 和 Secret？</button>
+            <div class="answer">进入控制台创建应用后即可查看。</div>
+          </div>
+          <div class="faq-item">
+            <button>签名校验失败怎么排查？</button>
+            <div class="answer">检查时间戳、nonce 与 body 拼接顺序是否一致。</div>
+          </div>
+          <div class="faq-item">
+            <button>回调收不到通知怎么办？</button>
+            <div class="answer">检查回调地址可访问性与 HTTPS 证书是否有效。</div>
+          </div>
+        </section>
+
         <section id="changelog" class="section">
-          <h2>更新日志</h2>
+          <h2>更新日志/公告</h2>
           <ul class="list">
             <li>2026-02-20：新增活动发放能力</li>
+            <li>2026-02-18：支付接口维护公告</li>
             <li>2026-02-12：签名规则新增 nonce 校验</li>
           </ul>
         </section>

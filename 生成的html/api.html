@@ -10,57 +10,406 @@
   <header>
     <div class="container header-inner">
       <div class="logo">
-        <div class="logo-badge">益</div>
+        <div class="logo-badge">🌺</div>
         腾讯公益开放平台
       </div>
       <nav class="nav">
         <a data-page="home" href="./index.html">首页</a>
-        <a data-page="capabilities" href="./capabilities.html">产品能力</a>
-        <a data-page="docs" href="./docs.html">文档中心</a>
+        <a data-page="api" href="./api.html">API</a>
+        <a data-page="docs" href="./docs.html">帮助文档</a>
         <a data-page="console" href="./console.html">控制台</a>
-        <a data-page="api" href="./api.html">API 参考</a>
-        <a data-page="support" href="./support.html">支持与公告</a>
+        <a data-page="admin" href="./admin.html" data-admin-only>管理中心</a>
       </nav>
-      <button class="btn secondary">在线调试（即将开放）</button>
+      <div class="header-actions">
+        <button class="btn secondary" type="button">在线调试（即将开放）</button>
+        <div class="account">
+          <button class="btn secondary" type="button" data-account-login>登录</button>
+          <a class="avatar" href="./account.html" data-account-avatar title="账号管理">
+            <span class="avatar-circle">👤</span>
+          </a>
+        </div>
+      </div>
     </div>
   </header>
 
   <main class="container">
     <section class="section">
-      <h2>接口：创建捐赠订单</h2>
-      <p class="muted">适用能力：捐赠能力 · 权限范围：donation.write · 环境：正式/沙箱</p>
-      <div class="badge">POST /v1/donation/order</div>
+      <h2>API 文档</h2>
+      <p class="muted">左侧选择分类，进入相应的 API 文档页面（当前为原型：以“分类页切换”的方式呈现）。</p>
+
+      <div class="card" style="margin-top: 12px;">
+        <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+          <input class="input" placeholder="搜索 API（名称 / 路径 / 关键词）" data-api-search />
+          <button class="btn secondary" type="button" data-api-search-clear>清空</button>
+        </div>
+        <div class="muted" style="margin-top: 10px; font-size: 12px;">支持检索左侧分类中的条目，并一键跳转到对应文档位置。</div>
+        <div class="search-results" data-api-search-results style="margin-top: 10px;"></div>
+      </div>
     </section>
 
-    <section class="section">
-      <h2>请求信息</h2>
-      <table class="table">
-        <tbody>
-          <tr><th>Method</th><td>POST</td></tr>
-          <tr><th>Content-Type</th><td>application/json</td></tr>
-          <tr><th>鉴权</th><td>Token + 签名</td></tr>
-        </tbody>
-      </table>
-    </section>
+    <div class="layout">
+      <aside class="sidebar" data-api-nav>
+        <h4>API 分类</h4>
+        <input class="input" placeholder="搜索分类" data-api-filter />
 
-    <section class="section">
-      <h2>请求参数</h2>
-      <table class="table">
-        <thead>
-          <tr><th>字段</th><th>类型</th><th>必填</th><th>说明</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>project_id</td><td>string</td><td>是</td><td>项目编号</td></tr>
-          <tr><td>amount</td><td>int</td><td>是</td><td>金额（分）</td></tr>
-          <tr><td>order_no</td><td>string</td><td>是</td><td>合作方订单号</td></tr>
-          <tr><td>notify_url</td><td>string</td><td>是</td><td>支付回调地址</td></tr>
-        </tbody>
-      </table>
-    </section>
+        <a href="#api-all" data-api-link>全部分类</a>
 
-    <section class="section">
-      <h2>请求示例</h2>
-      <div class="code">
+        <div class="sidebar-group">
+          <div class="sidebar-group-title">基础与登录</div>
+          <a href="#api-about" data-api-link>关于服务端 API</a>
+          <a class="sub-link" href="#api-about-concept" data-api-link>· 基本概念介绍</a>
+          <a class="sub-link" href="#api-about-credential" data-api-link>· 接口调用凭证</a>
+          <a class="sub-link" href="#api-about-callback" data-api-link>· 通用回调方法</a>
+          <a class="sub-link" href="#api-about-service" data-api-link>· 第三方服务商模式</a>
+
+          <a href="#api-login" data-api-link>用户登录</a>
+          <a class="sub-link" href="#api-login-web-start" data-api-link>· Web登录-开始开发</a>
+          <a class="sub-link" href="#api-login-web-sdk" data-api-link>· Web登录-SDK</a>
+          <a class="sub-link" href="#api-login-web-credential" data-api-link>· 机构用户凭证管理</a>
+          <a class="sub-link" href="#api-login-mini" data-api-link>· 小程序插件登录</a>
+          <a class="sub-link" href="#api-login-union" data-api-link>· 联合登录</a>
+          <a class="sub-link" href="#api-login-token" data-api-link>· 用户凭证管理</a>
+
+          <a href="#api-account" data-api-link>帐号管理</a>
+          <a class="sub-link" href="#api-account-overview" data-api-link>· 概述</a>
+          <a class="sub-link" href="#api-account-game" data-api-link>· 微信游戏</a>
+
+          <a href="#api-callback" data-api-link>回调通知</a>
+          <a class="sub-link" href="#api-callback-org-auth" data-api-link>· 机构授权通知</a>
+          <a class="sub-link" href="#api-callback-org-cancel" data-api-link>· 机构取消授权通知</a>
+        </div>
+
+        <div class="sidebar-group">
+          <div class="sidebar-group-title">权益与互动</div>
+          <a href="#api-redflower" data-api-link>小红花</a>
+          <a class="sub-link" href="#api-redflower-overview" data-api-link>· 概述</a>
+          <a class="sub-link" href="#api-redflower-auto" data-api-link>· 无感发花</a>
+          <a class="sub-link" href="#api-redflower-jump" data-api-link>· 跳转领花页发花</a>
+          <a class="sub-link" href="#api-redflower-status" data-api-link>· 合作活动领特殊微信状态</a>
+          <a class="sub-link" href="#api-redflower-faq" data-api-link>· 常见问题</a>
+          <a class="sub-link" href="#api-redflower-error" data-api-link>· 错误码</a>
+
+          <a href="#api-redflower-code" data-api-link>小红花码</a>
+          <a class="sub-link" href="#api-redflower-code-print" data-api-link>· 获取小红花码印刷文件</a>
+
+          <a href="#api-quiz" data-api-link>答题服务</a>
+          <a class="sub-link" href="#api-quiz-progress" data-api-link>· 当前答题进展</a>
+
+          <a href="#api-medal" data-api-link>个人勋章</a>
+          <a class="sub-link" href="#api-medal-overview" data-api-link>· 概述</a>
+          <a class="sub-link" href="#api-medal-grant" data-api-link>· 勋章发放</a>
+
+          <a href="#api-video" data-api-link>视频号任务</a>
+          <a class="sub-link" href="#api-video-callback" data-api-link>· 状态同步回调</a>
+
+          <a href="#api-me" data-api-link>个人中心</a>
+          <a class="sub-link" href="#api-me-activity" data-api-link>· 活动报名</a>
+          <a class="sub-link" href="#api-me-flow" data-api-link>· 查询用户流水（已废弃）</a>
+        </div>
+
+        <div class="sidebar-group">
+          <div class="sidebar-group-title">项目与公益业务</div>
+          <a href="#api-project" data-api-link>项目</a>
+          <a class="sub-link" href="#api-project-gyapp" data-api-link>· GYAPP 查询授权项目信息</a>
+          <a class="sub-link" href="#api-project-deprecated" data-api-link>· 查询项目信息（已废弃）</a>
+          <a class="sub-link" href="#api-project-progress" data-api-link>· 项目进展相关</a>
+          <a class="sub-link" href="#api-project-data" data-api-link>· 查询公益数据</a>
+          <a class="sub-link" href="#api-project-chain" data-api-link>· 查询项目区块链信息</a>
+
+          <a href="#api-lejuan" data-api-link>乐捐</a>
+          <a class="sub-link" href="#api-lejuan-pay" data-api-link>· 支付接入</a>
+
+          <a href="#api-yuejuan" data-api-link>月捐</a>
+          <a class="sub-link" href="#api-yuejuan-mini" data-api-link>· 小程序接入</a>
+          <a class="sub-link" href="#api-yuejuan-batch" data-api-link>· 批量查询项目开通状态</a>
+
+          <a href="#api-goodmap" data-api-link>好事地图接入</a>
+          <a class="sub-link" href="#api-goodmap-static" data-api-link>· 获取周边静态图和统计信息</a>
+          <a class="sub-link" href="#api-goodmap-access" data-api-link>· 好事地图接入</a>
+
+          <a href="#api-together" data-api-link>一起捐</a>
+          <a class="sub-link" href="#api-together-create" data-api-link>· 创建一起捐</a>
+          <a class="sub-link" href="#api-together-query" data-api-link>· 查询一起捐信息</a>
+          <a class="sub-link" href="#api-together-batch" data-api-link>· 批量查询一起捐信息</a>
+          <a class="sub-link" href="#api-together-batch-user" data-api-link>· 批量查询个人一起捐捐款</a>
+          <a class="sub-link" href="#api-together-jump" data-api-link>· 跳转一起捐详情页支付</a>
+        </div>
+
+        <div class="sidebar-group">
+          <div class="sidebar-group-title">交易与账户</div>
+          <a href="#api-pay" data-api-link>支付接入</a>
+          <a class="sub-link" href="#api-pay-overview" data-api-link>· 概述</a>
+          <a class="sub-link" href="#api-pay-h5" data-api-link>· H5 接入</a>
+          <a class="sub-link" href="#api-pay-mini" data-api-link>· 小程序接入</a>
+          <a class="sub-link" href="#api-pay-ticket" data-api-link>· 获取下单 ticket</a>
+          <a class="sub-link" href="#api-pay-ticket-auth" data-api-link>· 获取下单 ticket-用户授权版</a>
+          <a class="sub-link" href="#api-pay-query" data-api-link>· 订单查询</a>
+          <a class="sub-link" href="#api-pay-notify" data-api-link>· 支付通知</a>
+          <a class="sub-link" href="#api-pay-query-ext" data-api-link>· 订单查询-公司外部合作</a>
+          <a class="sub-link" href="#api-pay-close" data-api-link>· 关闭订单</a>
+          <a class="sub-link" href="#api-pay-error" data-api-link>· 错误码说明</a>
+
+          <a href="#api-user-auth" data-api-link>用户授权</a>
+          <a class="sub-link" href="#api-user-auth-mini-in" data-api-link>· 小程序接入-内</a>
+          <a class="sub-link" href="#api-user-auth-mini-out" data-api-link>· 小程序接入-外</a>
+
+          <a href="#api-bill" data-api-link>账单下载</a>
+          <a class="sub-link" href="#api-bill-overview" data-api-link>· 概述</a>
+          <a class="sub-link" href="#api-bill-download" data-api-link>· 账单下载</a>
+          <a class="sub-link" href="#api-bill-download-b2b" data-api-link>· 账单下载_B2B</a>
+
+          <a href="#api-user-order" data-api-link>用户订单</a>
+          <a class="sub-link" href="#api-user-order-overview" data-api-link>· 概述</a>
+          <a class="sub-link" href="#api-user-order-list" data-api-link>· 用户订单</a>
+
+          <a href="#api-user-profile" data-api-link>用户资料</a>
+          <a class="sub-link" href="#api-user-profile-overview" data-api-link>· 概述</a>
+          <a class="sub-link" href="#api-user-profile-info" data-api-link>· 用户资料</a>
+        </div>
+
+        <div class="sidebar-group">
+          <div class="sidebar-group-title">机构与数据</div>
+          <a href="#api-org-member" data-api-link>机构成员管理</a>
+          <a class="sub-link" href="#api-org-member-list" data-api-link>· 获取应用可见成员列表</a>
+          <a class="sub-link" href="#api-org-member-info" data-api-link>· 获取应用可见成员基础信息</a>
+
+          <a href="#api-org" data-api-link>机构管理</a>
+          <a class="sub-link" href="#api-org-base" data-api-link>· 查询机构基础信息</a>
+
+          <a href="#api-dw" data-api-link>数仓数据中心</a>
+          <a class="sub-link" href="#api-dw-overview" data-api-link>· 概述</a>
+          <a class="sub-link" href="#api-dw-dashboard" data-api-link>· 发布引用看板</a>
+          <a class="sub-link" href="#api-dw-token" data-api-link>· 数仓 Token 服务</a>
+        </div>
+
+        <div class="sidebar-group">
+          <div class="sidebar-group-title">企业与物资</div>
+          <a href="#api-enterprise" data-api-link>企业捐赠</a>
+          <a class="sub-link" href="#api-enterprise-point" data-api-link>· 积分捐</a>
+          <a class="sub-link" href="#api-enterprise-behavior" data-api-link>· 行为捐</a>
+
+          <a href="#api-material" data-api-link>物资</a>
+          <a class="sub-link" href="#api-material-post" data-api-link>· 邮政普包接入</a>
+          <a class="sub-link" href="#api-material-reward" data-api-link>· 爱心回礼</a>
+        </div>
+      </aside>
+
+      <div>
+        <div class="api-doc is-active" id="api-all" data-api-doc="all">
+          <section class="section">
+            <h2>全部分类</h2>
+            <p class="muted">选择左侧分类即可进入对应文档页；该分类结构与官网一致。</p>
+            <div class="grid grid-3" style="margin-top: 12px;">
+              <div class="card"><h3>基础与登录</h3><p class="muted">开发前必读、登录与回调通知。</p><a class="btn secondary" href="#api-about">查看</a></div>
+              <div class="card"><h3>权益与互动</h3><p class="muted">小红花、勋章、任务与互动服务。</p><a class="btn secondary" href="#api-redflower">查看</a></div>
+              <div class="card"><h3>交易与账户</h3><p class="muted">支付、授权、账单、订单与用户资料。</p><a class="btn secondary" href="#api-pay">查看</a></div>
+            </div>
+          </section>
+        </div>
+
+        <div class="api-doc" id="api-about" data-api-doc="about">
+          <section class="section">
+            <h2>关于服务端 API</h2>
+            <p class="muted">开发前必读：基本概念介绍 / 接口调用凭证 / 通用回调方法 / 第三方服务商模式。</p>
+            <ul class="list">
+              <li id="api-about-concept">基本概念介绍</li>
+              <li id="api-about-credential">接口调用凭证</li>
+              <li id="api-about-callback">通用回调方法</li>
+              <li id="api-about-service">第三方服务商模式</li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="api-doc" id="api-login" data-api-doc="login">
+          <section class="section">
+            <h2>用户登录</h2>
+            <p class="muted">包含 Web 登录、小程序插件登录、联合登录与用户凭证管理。</p>
+            <ul class="list">
+              <li id="api-login-web-start">Web登录：开始开发</li>
+              <li id="api-login-web-sdk">Web登录：web端登录sdk</li>
+              <li id="api-login-web-credential">Web登录：机构用户凭证管理</li>
+              <li id="api-login-mini">小程序插件登录：小程序登录</li>
+              <li id="api-login-union">联合登录：公司内部合作</li>
+              <li id="api-login-token">用户凭证管理</li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="api-doc" id="api-account" data-api-doc="account">
+          <section class="section">
+            <h2>帐号管理</h2>
+            <ul class="list">
+              <li id="api-account-overview">概述</li>
+              <li id="api-account-game">微信游戏</li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="api-doc" id="api-callback" data-api-doc="callback">
+          <section class="section">
+            <h2>回调通知</h2>
+            <ul class="list">
+              <li id="api-callback-org-auth">机构授权通知</li>
+              <li id="api-callback-org-cancel">机构取消授权通知</li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="api-doc" id="api-redflower" data-api-doc="redflower">
+          <section class="section">
+            <h2>小红花</h2>
+            <ul class="list">
+              <li id="api-redflower-overview">概述</li>
+              <li id="api-redflower-auto">无感发花</li>
+              <li id="api-redflower-jump">跳转领花页发花</li>
+              <li id="api-redflower-status">合作活动领特殊微信状态</li>
+              <li id="api-redflower-faq">常见问题</li>
+              <li id="api-redflower-error">错误码</li>
+            </ul>
+          </section>
+
+          <section class="section" id="badge-api">
+            <h2>接口示例：发放小红花</h2>
+            <p class="muted">示例接口结构与参数说明待补齐（与支付接入示例模板一致）。</p>
+            <div class="badge">POST /v1/badge/grant</div>
+          </section>
+        </div>
+
+        <div class="api-doc" id="api-redflower-code" data-api-doc="redflower-code">
+          <section class="section">
+            <h2>小红花码</h2>
+            <ul class="list">
+              <li id="api-redflower-code-print">获取小红花码印刷文件</li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="api-doc" id="api-quiz" data-api-doc="quiz">
+          <section class="section">
+            <h2>答题服务</h2>
+            <ul class="list">
+              <li id="api-quiz-progress">当前答题进展</li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="api-doc" id="api-medal" data-api-doc="medal">
+          <section class="section">
+            <h2>个人勋章</h2>
+            <ul class="list">
+              <li id="api-medal-overview">概述</li>
+              <li id="api-medal-grant">勋章发放</li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="api-doc" id="api-project" data-api-doc="project">
+          <section class="section">
+            <h2>项目</h2>
+            <ul class="list">
+              <li id="api-project-gyapp">GYAPP查询授权项目信息</li>
+              <li id="api-project-deprecated">【已废弃】查询项目信息</li>
+              <li id="api-project-progress">项目进展相关</li>
+              <li id="api-project-data">查询公益数据</li>
+              <li id="api-project-chain">查询项目区块链信息</li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="api-doc" id="api-lejuan" data-api-doc="lejuan">
+          <section class="section">
+            <h2>乐捐</h2>
+            <ul class="list">
+              <li id="api-lejuan-pay">支付接入</li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="api-doc" id="api-yuejuan" data-api-doc="yuejuan">
+          <section class="section">
+            <h2>月捐</h2>
+            <ul class="list">
+              <li id="api-yuejuan-mini">小程序接入</li>
+              <li id="api-yuejuan-batch">批量查询项目开通状态</li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="api-doc" id="api-goodmap" data-api-doc="goodmap">
+          <section class="section">
+            <h2>好事地图接入</h2>
+            <ul class="list">
+              <li id="api-goodmap-static">获取周边静态图和统计信息</li>
+              <li id="api-goodmap-access">好事地图接入</li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="api-doc" id="api-together" data-api-doc="together">
+          <section class="section">
+            <h2>一起捐</h2>
+            <ul class="list">
+              <li id="api-together-create">创建一起捐</li>
+              <li id="api-together-query">查询一起捐信息</li>
+              <li id="api-together-batch">批量查询一起捐信息</li>
+              <li id="api-together-batch-user">批量查询个人一起捐捐款</li>
+              <li id="api-together-jump">跳转一起捐详情页支付</li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="api-doc" id="api-pay" data-api-doc="pay">
+          <section class="section">
+            <h2>支付接入</h2>
+            <ul class="list">
+              <li id="api-pay-overview">概述</li>
+              <li id="api-pay-h5">H5接入</li>
+              <li id="api-pay-mini">小程序接入</li>
+              <li id="api-pay-ticket">获取下单ticket</li>
+              <li id="api-pay-ticket-auth">获取下单ticket-用户授权版</li>
+              <li id="api-pay-query">订单查询</li>
+              <li id="api-pay-notify">支付通知</li>
+              <li id="api-pay-query-ext">订单查询-公司外部合作</li>
+              <li id="api-pay-close">关闭订单</li>
+              <li id="api-pay-error">错误码说明</li>
+            </ul>
+          </section>
+
+          <section class="section" id="donation-api">
+            <h2>接口示例：创建捐赠订单</h2>
+            <p class="muted">适用能力：捐赠能力 · 权限范围：donation.write · 环境：正式/沙箱</p>
+            <div class="badge">POST /v1/donation/order</div>
+          </section>
+
+          <section class="section">
+            <h2>请求信息</h2>
+            <table class="table">
+              <tbody>
+                <tr><th>Method</th><td>POST</td></tr>
+                <tr><th>Content-Type</th><td>application/json</td></tr>
+                <tr><th>鉴权</th><td>Token + 签名</td></tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section class="section">
+            <h2>请求参数</h2>
+            <table class="table">
+              <thead>
+                <tr><th>字段</th><th>类型</th><th>必填</th><th>说明</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>project_id</td><td>string</td><td>是</td><td>项目编号</td></tr>
+                <tr><td>amount</td><td>int</td><td>是</td><td>金额（分）</td></tr>
+                <tr><td>order_no</td><td>string</td><td>是</td><td>合作方订单号</td></tr>
+                <tr><td>notify_url</td><td>string</td><td>是</td><td>支付回调地址</td></tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section class="section">
+            <h2>请求示例</h2>
+            <div class="code">
 <pre><code>curl -X POST https://oapi.gongyi.qq.com/v1/donation/order \
   -H "Authorization: Bearer {token}" \
   -H "Content-Type: application/json" \
@@ -70,12 +419,12 @@
     "order_no": "ORD20260222001",
     "notify_url": "https://partner.com/callback"
   }'</code></pre>
-      </div>
-    </section>
+            </div>
+          </section>
 
-    <section class="section">
-      <h2>响应示例</h2>
-      <div class="code">
+          <section class="section">
+            <h2>响应示例</h2>
+            <div class="code">
 <pre><code>{
   "code": 0,
   "message": "success",
@@ -84,33 +433,159 @@
     "pay_url": "https://pay.gongyi.qq.com/xxx"
   }
 }</code></pre>
+            </div>
+          </section>
+
+          <section class="section">
+            <h2>错误码</h2>
+            <table class="table">
+              <thead>
+                <tr><th>错误码</th><th>说明</th><th>建议</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>4001</td><td>签名错误</td><td>检查签名与时间戳</td></tr>
+                <tr><td>4020</td><td>权限不足</td><td>申请 donation.write 权限</td></tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section class="section">
+            <h2>关联文档</h2>
+            <ul class="list">
+              <li><a href="./docs.html#auth">签名与鉴权</a></li>
+              <li><a href="./docs.html#callback">回调配置</a></li>
+              <li><a href="./docs.html#faq">FAQ 与支持</a></li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="api-doc" id="api-user-auth" data-api-doc="user-auth">
+          <section class="section">
+            <h2>用户授权</h2>
+            <ul class="list">
+              <li id="api-user-auth-mini-in">小程序接入-内</li>
+              <li id="api-user-auth-mini-out">小程序接入-外</li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="api-doc" id="api-bill" data-api-doc="bill">
+          <section class="section">
+            <h2>账单下载</h2>
+            <ul class="list">
+              <li id="api-bill-overview">概述</li>
+              <li id="api-bill-download">账单下载</li>
+              <li id="api-bill-download-b2b">账单下载_B2B</li>
+            </ul>
+
+            <section class="section" id="data-api">
+              <h2>接口示例：下载账单</h2>
+              <p class="muted">示例接口结构与参数说明待补齐（与支付接入示例模板一致）。</p>
+              <div class="badge">GET /v1/bill/download</div>
+            </section>
+          </section>
+        </div>
+
+        <div class="api-doc" id="api-user-order" data-api-doc="user-order">
+          <section class="section">
+            <h2>用户订单</h2>
+            <ul class="list">
+              <li id="api-user-order-overview">概述</li>
+              <li id="api-user-order-list">用户订单</li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="api-doc" id="api-user-profile" data-api-doc="user-profile">
+          <section class="section">
+            <h2>用户资料</h2>
+            <ul class="list">
+              <li id="api-user-profile-overview">概述</li>
+              <li id="api-user-profile-info">用户资料</li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="api-doc" id="api-org-member" data-api-doc="org-member">
+          <section class="section">
+            <h2>机构成员管理</h2>
+            <ul class="list">
+              <li id="api-org-member-list">获取应用可见成员列表</li>
+              <li id="api-org-member-info">获取应用可见成员基础信息</li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="api-doc" id="api-org" data-api-doc="org">
+          <section class="section">
+            <h2>机构管理</h2>
+            <ul class="list">
+              <li id="api-org-base">查询机构基础信息</li>
+            </ul>
+
+            <section class="section" id="org-api">
+              <h2>接口示例：机构授权</h2>
+              <p class="muted">示例接口结构与参数说明待补齐（与支付接入示例模板一致）。</p>
+              <div class="badge">POST /v1/org/auth</div>
+            </section>
+          </section>
+        </div>
+
+        <div class="api-doc" id="api-video" data-api-doc="video">
+          <section class="section">
+            <h2>视频号任务</h2>
+            <ul class="list">
+              <li id="api-video-callback">视频号任务状态同步回调</li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="api-doc" id="api-me" data-api-doc="me">
+          <section class="section">
+            <h2>个人中心</h2>
+            <ul class="list">
+              <li id="api-me-activity">活动报名</li>
+              <li id="api-me-flow">查询用户流水--已废弃</li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="api-doc" id="api-dw" data-api-doc="dw">
+          <section class="section">
+            <h2>数仓数据中心</h2>
+            <ul class="list">
+              <li id="api-dw-overview">概述</li>
+              <li id="api-dw-dashboard">发布引用看板</li>
+              <li id="api-dw-token">数仓Token服务</li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="api-doc" id="api-enterprise" data-api-doc="enterprise">
+          <section class="section">
+            <h2>企业捐赠</h2>
+            <ul class="list">
+              <li id="api-enterprise-point">积分捐（当前页面示例）</li>
+              <li id="api-enterprise-behavior">行为捐</li>
+            </ul>
+            <p class="muted" style="margin-top: 10px;">线上对照：<a href="https://open.gongyi.qq.com/docs/server_api/%E4%BC%81%E4%B8%9A%E6%8D%90%E8%B5%A0/%E7%A7%AF%E5%88%86%E6%8D%90.html" target="_blank" rel="noopener">积分捐</a></p>
+          </section>
+        </div>
+
+        <div class="api-doc" id="api-material" data-api-doc="material">
+          <section class="section">
+            <h2>物资</h2>
+            <ul class="list">
+              <li id="api-material-post">邮政普包接入</li>
+              <li id="api-material-reward">爱心回礼：邮政回礼发放信息更新</li>
+            </ul>
+          </section>
+        </div>
       </div>
-    </section>
-
-    <section class="section">
-      <h2>错误码</h2>
-      <table class="table">
-        <thead>
-          <tr><th>错误码</th><th>说明</th><th>建议</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>4001</td><td>签名错误</td><td>检查签名与时间戳</td></tr>
-          <tr><td>4020</td><td>权限不足</td><td>申请 donation.write 权限</td></tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section class="section">
-      <h2>关联文档</h2>
-      <ul class="list">
-        <li><a href="./docs.html#auth">签名与鉴权</a></li>
-        <li><a href="./docs.html#callback">回调配置</a></li>
-        <li><a href="./support.html">FAQ 与支持</a></li>
-      </ul>
-    </section>
+    </div>
 
     <footer>
-      更多接口可按照本模板批量补齐。
+      左侧分类与官网一致；具体接口详情可按本原型模板逐步补齐。
     </footer>
   </main>
   <script src="./open_platform.js"></script>

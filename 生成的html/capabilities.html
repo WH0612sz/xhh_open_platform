@@ -3,104 +3,55 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>产品能力 · 腾讯公益开放平台</title>
+  <title>能力概览已并入首页 · 腾讯公益开放平台</title>
   <link rel="stylesheet" href="./open_platform.css" />
 </head>
 <body data-page="capabilities">
   <header>
     <div class="container header-inner">
       <div class="logo">
-        <div class="logo-badge">益</div>
+        <div class="logo-badge">🌺</div>
         腾讯公益开放平台
       </div>
       <nav class="nav">
         <a data-page="home" href="./index.html">首页</a>
-        <a data-page="capabilities" href="./capabilities.html">产品能力</a>
-        <a data-page="docs" href="./docs.html">文档中心</a>
+        <a data-page="api" href="./api.html">API</a>
+        <a data-page="docs" href="./docs.html">帮助文档</a>
         <a data-page="console" href="./console.html">控制台</a>
-        <a data-page="api" href="./api.html">API 参考</a>
-        <a data-page="support" href="./support.html">支持与公告</a>
+        <a data-page="admin" href="./admin.html" data-admin-only>管理中心</a>
       </nav>
-      <button class="btn">申请接入</button>
+      <div class="header-actions">
+        <a class="btn" href="./docs.html#quickstart">开始接入</a>
+        <div class="account">
+          <button class="btn secondary" type="button" data-account-login>登录</button>
+          <a class="avatar" href="./account.html" data-account-avatar title="账号管理">
+            <span class="avatar-circle">👤</span>
+          </a>
+        </div>
+      </div>
     </div>
   </header>
 
   <main class="container">
     <section class="section">
-      <h2>产品能力总览</h2>
-      <p class="muted">按场景组织能力，帮助合作方快速选择合适的接入方案。</p>
+      <h2>能力概览已并入首页</h2>
+      <p class="muted">根据最新 PRD，能力介绍统一在首页「场景/能力概览」模块呈现，不再单独设置能力中心页面。</p>
+      <div class="grid grid-2" style="margin-top:16px;">
+        <div class="card">
+          <h3>前往首页能力概览</h3>
+          <p class="muted">选择场景后直接跳转到对应的接入指南与 API 分类。</p>
+          <a class="btn" href="./index.html#capabilities">去首页查看</a>
+        </div>
+        <div class="card">
+          <h3>进入帮助文档</h3>
+          <p class="muted">查看快速开始、接入指南与错误码排查。</p>
+          <a class="btn secondary" href="./docs.html">查看帮助文档</a>
+        </div>
+      </div>
     </section>
 
-    <div class="layout">
-      <aside class="sidebar">
-        <h4>能力目录</h4>
-        <a href="#donation">捐赠能力</a>
-        <a href="#badge">小红花/勋章</a>
-        <a href="#user">用户体系</a>
-        <a href="#data">项目与数据</a>
-        <a href="#org">机构管理</a>
-      </aside>
-
-      <div>
-        <section id="donation" class="section">
-          <h2>捐赠能力</h2>
-          <div class="card">
-            <p class="muted">支持乐捐、月捐、一起捐、通用支付链路，覆盖 H5/小程序/公众号。</p>
-            <div style="display:flex; gap:10px; margin-top:12px;">
-              <a class="btn secondary" href="./docs.html#quickstart">接入指南</a>
-              <a class="btn secondary" href="./api.html">API 参考</a>
-            </div>
-            <table class="table">
-              <thead>
-                <tr><th>子能力</th><th>说明</th><th>接入时间</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>乐捐</td><td>单笔捐赠支付</td><td>1-3 天</td></tr>
-                <tr><td>月捐</td><td>周期扣款与续费管理</td><td>3-5 天</td></tr>
-                <tr><td>一起捐</td><td>发起活动与募集</td><td>3-5 天</td></tr>
-                <tr><td>通用支付</td><td>下单/查询/通知</td><td>1-2 天</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        <section id="badge" class="section">
-          <h2>小红花 / 勋章</h2>
-          <div class="card">
-            <p class="muted">提供无感发放、跳转领取与活动权益联动方案。</p>
-            <ul class="list">
-              <li>无感发花：完成行为后自动发放</li>
-              <li>跳转领花页：适合活动场景</li>
-              <li>勋章体系：用户激励与成长</li>
-            </ul>
-          </div>
-        </section>
-
-        <section id="user" class="section">
-          <h2>用户体系</h2>
-          <div class="card">
-            <p class="muted">登录体系、用户授权、用户资料与订单查询。</p>
-          </div>
-        </section>
-
-        <section id="data" class="section">
-          <h2>项目与数据</h2>
-          <div class="card">
-            <p class="muted">项目查询、账单下载、公益数据与数据看板（P2）。</p>
-          </div>
-        </section>
-
-        <section id="org" class="section">
-          <h2>机构管理</h2>
-          <div class="card">
-            <p class="muted">机构授权、成员管理、授权回调与解除授权回调。</p>
-          </div>
-        </section>
-      </div>
-    </div>
-
     <footer>
-      以上为 MVP 能力结构示例，可根据实际接口补充。
+      若需能力细节，请通过首页场景入口与 API 分类查看。
     </footer>
   </main>
   <script src="./open_platform.js"></script>
